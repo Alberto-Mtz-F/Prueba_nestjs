@@ -1,5 +1,6 @@
-export class userModel{
+export interface User{
+    id:number;
     name: string;
     email: string;
-    cellphone: number;
+    cellphone: string;
 }
