@@ -20,16 +20,8 @@ export class UserController {
     }
 
     @Get('/:email')
-    getUser(@Param('email') param): User{
-        return this.validateQuest(this.userService.getByEmail(param))
-    }
-
-    validateQuest(request: User){
-        if (request != undefined) {
-            return request;
-        } else {
-            console.error('El Usuario no existe');
-            
-        } 
-    }
+    getUser(@Param('email') param): User | string{
+        const user = this.userService.getByEmail(param)
+        return user ?? "El Usuario no existe"
+    } 
 }
