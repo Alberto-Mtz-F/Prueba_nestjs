@@ -6,8 +6,9 @@ import { TestScheduler } from 'rxjs/testing';
 export class UserService {
     private readonly Users: User[] = []
 
-    create(user:User){
+    create(user:User):boolean{
         this.Users.push(user)
+        return true
     }
 
     getAll(): User[]{
@@ -17,12 +18,36 @@ export class UserService {
     getByEmail(email: string): User{
         return this.Users.find( (user) => user.email === email )
     }
-    
+
     updateUserbyID( id:number, user:User ):boolean{
         let user_index = this.Users.findIndex( (user) => user.id === id)
-        const olduser = this.Users[user_index]
+
+        if(this.userExists(id)){
+            
+            const newUser : User = Object.assign(this.Users[user_index], user)
+            this.Users[user_index] = newUser
+            return true
+        }
+        return false
+    }
+
+    /**
+     * @description Esta funcion valida si el usauario existe
+     * @param id id del usuario que verificamos si existe
+     * @returns true si el usuario existe o flase si el usuario no existe
+     */
+    userExists(id: number):boolean{
+        const index = this.Users.findIndex((user) => user.id === id)
+        return index !== -1
+    }
+    
+    // Es otra forma de hacer el mismo trabajo y ademas te permite conocer el como funciona el objeto.
+    /*updateUserbyID( id:number, user:User ):boolean{
+        let user_index = this.Users.findIndex( (user) => user.id === id)
 
         if(user_index !== -1){
+            const olduser = this.Users[user_index]
+            
             this.Users[user_index] = {
                 id: user.id,
                 name: user.name,
@@ -50,6 +75,6 @@ export class UserService {
         if (this.Users[user_index].cellphone === undefined) {
             this.Users[user_index].cellphone = olduser.cellphone
         }
-    }
+    }*/
     
 }
