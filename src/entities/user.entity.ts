@@ -11,6 +11,6 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
-  cellphone: string;
+  @Column({default:null})
+  cellphone?: string;
 }

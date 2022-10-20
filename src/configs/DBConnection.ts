@@ -1,4 +1,6 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Details } from 'src/entities/details.entity';
+import { Sales } from 'src/entities/sales.entity';
 import { User } from 'src/entities/user.entity';
 
 export const Connection = TypeOrmModule.forRoot({
@@ -8,6 +10,6 @@ export const Connection = TypeOrmModule.forRoot({
     username: 'root',
     password: '',
     database: 'prueba-bd',
-    entities: [User],
+    entities: [User,Sales,Details],
     synchronize: true,
   })
