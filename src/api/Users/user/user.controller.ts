@@ -23,7 +23,7 @@ export class UserController {
         
     }
     @Get('/all')
-    getUsers(): User[]{
+    getUsers(){
         return this.userService.getAll()
     }
 

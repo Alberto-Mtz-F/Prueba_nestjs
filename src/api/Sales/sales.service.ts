@@ -35,7 +35,6 @@ export class SalesService {
             details.unit_price = item.unit_price
             details.id_sales = (new_sele.id)
 
-            console.log(details)
             this.detailsEntity.insert({
                 id_sales: details.id_sales,
                 quantity: details.quantity,

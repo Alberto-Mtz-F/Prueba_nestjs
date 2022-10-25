@@ -1,4 +1,3 @@
-import { ISales } from './../../Models/sales.model';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { DetailsService } from './details.service';
 

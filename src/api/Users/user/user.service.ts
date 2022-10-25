@@ -21,8 +21,8 @@ export class UserService {
 
     }
 
-    getAll(): User[]{
-        return this.Users;
+    getAll(){
+        return this.userEntity.find();
     }
 
     getByEmail(email: string): User{
