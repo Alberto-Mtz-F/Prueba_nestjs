@@ -1,4 +1,4 @@
-import { User } from './../../Models/user.model';
+import { User } from './../../../Models/user.model';
 import { Body, Controller, Get, Param, Post,  Put } from '@nestjs/common';
 import { UserService } from './user.service';
 
@@ -23,7 +23,7 @@ export class UserController {
         
     }
     @Get('/all')
-    getUsers(): User[]{
+    getUsers(){
         return this.userService.getAll()
     }
 

@@ -1,8 +1,8 @@
-import { User } from './../../Models/user.model';
+import { User } from './../../../Models/user.model';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User as userEntity} from '../../entities/user.entity';
+import { User as userEntity} from '../../../entities/user.entity';
 ;
 
 @Injectable()
@@ -21,8 +21,8 @@ export class UserService {
 
     }
 
-    getAll(): User[]{
-        return this.Users;
+    getAll(){
+        return this.userEntity.find();
     }
 
     getByEmail(email: string): User{
