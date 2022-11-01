@@ -1,8 +1,8 @@
-import { ISales } from './../../Models/sales.model';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Details } from 'src/entities/details.entity';
+import { IDetails } from 'src/Models/details.model';
 
 @Injectable()
 export class DetailsService {
@@ -12,12 +12,15 @@ export class DetailsService {
 
     }
 
-    async create(details: ISales){
-        for (let index = 0; index < details.details.length; index++) {
-            await this.detailsEntity.insert(details.details[index])
-            //CAmbiar tablas 
-            
-        }
+    async create(id_sale:number, details: IDetails[]){
+        details.forEach(element  => {
+            this.detailsEntity.insert({
+                product: element.product,
+                quantity: element.quantity,
+                unit_price: element.unit_price,
+                id_sales: id_sale
+            })
+        });
         return true
     }
 
